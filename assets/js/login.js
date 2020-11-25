@@ -48,7 +48,7 @@ $(function () {
         //收集表单数据
         let data = $(this).serialize();
         $.ajax({
-            url: "http://ajax.frontend.itheima.net/api/reguser",
+            url: "/api/reguser",
             type: "POST",
             data,
             success: function (res) {
@@ -67,7 +67,7 @@ $(function () {
         e.preventDefault();
         let data = $(this).serialize();
         $.ajax({
-            url: "http://ajax.frontend.itheima.net/api/login",
+            url: "/api/login",
             type: "POST",
             data,
             success: function (res) {
