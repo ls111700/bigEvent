@@ -2,7 +2,34 @@ $(function () {
 
     let layer = layui.layer;
 
+    getAvatarAndName();
 
+
+
+    $("#logoutBtn").click(function () {
+        layer.confirm(
+            "确定退出登录？",
+            { icon: 3, title: "提 示" },
+            function (index) {
+                //点击确认的时候执行的函数
+
+                // console.log("点击确认了");
+
+                layer.close(index);
+
+                localStorage.removeItem("token");
+
+                location.href = "login.html";
+
+
+            }
+        );
+    });
+
+
+});
+
+function getAvatarAndName() {
     $.ajax({
         url: "/my/userinfo",
         type: "GET",
@@ -10,7 +37,7 @@ $(function () {
             Authorization: localStorage.getItem('token'),
         },
         success: function (res) {
-            console.log(res);
+            // console.log(res);
 
             if (res.status !== 0) {
                 return layer.msg("获取用户信息失败！");
@@ -41,26 +68,4 @@ $(function () {
 
     })
 
-
-    $("#logoutBtn").click(function () {
-        layer.confirm(
-            "确定退出登录？",
-            { icon: 3, title: "提 示" },
-            function (index) {
-                //点击确认的时候执行的函数
-
-                // console.log("点击确认了");
-
-                layer.close(index);
-
-                localStorage.removeItem("token");
-
-                location.href = "login.html";
-
-
-            }
-        );
-    });
-
-
-});
+}
